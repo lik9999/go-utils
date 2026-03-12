@@ -27,3 +27,6 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+
+    - name: test head
+      run: echo "head ${{ github.event.pull_request.head.sha }}"
