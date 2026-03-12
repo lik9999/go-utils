@@ -7,6 +7,8 @@ on:
         description: 'Environment'
         required: true
         type: string
+env:
+  ENV_TEST: ${{vars.VAR_TEST01}}
 
 jobs:
 
@@ -28,3 +30,6 @@ jobs:
 
     - name: Test echo
       run: echo "Deploying to ${{ inputs.environment }} ${{secrets.GITHUB_TOKEN}}"
+
+    - name: test env
+      run: echo "Env test var ${{vars.VAR_TEST01}} env $ENV_TEST"
