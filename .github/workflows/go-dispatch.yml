@@ -8,12 +8,15 @@ on:
         required: true
         type: string
 env:
-  ENV_TEST: ${{vars.VAR_TEST01}}
+  ENV_TEST: env_test
 
 jobs:
 
   build:
     runs-on: ubuntu-latest
+    environment: env_test01
+    env:
+      BUILD_ENV_TEST: ${{vars.VAR_TEST01}}
     steps:
     - uses: actions/checkout@v4
 
@@ -32,4 +35,4 @@ jobs:
       run: echo "Deploying to ${{ inputs.environment }} ${{secrets.GITHUB_TOKEN}}"
 
     - name: test env
-      run: echo "Env test var ${{vars.VAR_TEST01}} env $ENV_TEST"
+      run: echo "Env test var ${{vars.VAR_TEST01}} env $ENV_TEST $BUILD_ENV_TEST"
